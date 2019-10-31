@@ -1,0 +1,33 @@
+<?scenebuilder-stylesheet /css/style.scc?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<VBox fx:id="vBox" fx:controller="sample.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center" >
+    <stylesheets><URL value="@/css/Style.css"/> </stylesheets>
+
+    <MenuBar>
+        <Menu text="File">
+            <Menu text="Close"/>
+        </Menu>
+        <Menu text="Chat"/>
+    </MenuBar>
+
+    <HBox fx:id="authPanel" visible="true" managed="true" >
+        <TextField fx:id="loginField" HBox.hgrow="ALWAYS" promptText="login"/>
+        <PasswordField fx:id="passwordField" HBox.hgrow="ALWAYS" promptText="password" onAction="#tryToAuth"/>
+        <Button fx:id="loginButton" text="Authorize" onAction="#tryToAuth"/>
+    </HBox>
+
+    <HBox VBox.vgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS">
+            <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
+            <HBox fx:id="bottomPanel" visible="false" managed="false" prefHeight="40" alignment="center">
+                <TextField fx:id="textField" onAction="#sendMessage" HBox.hgrow="ALWAYS" prefHeight="40" promptText="Write a message..." />
+                <Button fx:id="buttonSent" onAction="#sendMessage" prefHeight="40" prefWidth="43" />
+            </HBox>
+        </VBox>
+        <ListView fx:id="clientList" managed="false" visible="false" HBox.hgrow="ALWAYS" prefWidth="100"/>
+    </HBox>
+
+</VBox>
