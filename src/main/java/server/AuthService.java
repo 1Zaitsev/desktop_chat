@@ -24,4 +24,35 @@ public class AuthService {
         }
         return null;
     }
+
+    public static void saveHistory(String nick, String message) throws SQLException {
+        String request = String.format("INSERT INTO history (nick, message) VAlUES ('%s', '%s')", nick, message);
+        statement.execute(request);
+    }
+
+    public static StringBuilder getChatHistory() throws SQLException {
+        StringBuilder result = new StringBuilder();
+        String request = String.format("SElECT nick, message FROM history ORDER BY id");
+        ResultSet resultSet = statement.executeQuery(request);
+
+        while (resultSet.next()){
+            result.append(resultSet.getString("nick") + " " + resultSet.getString("message") +"\n");
+        }
+        return result;
+    }
+
+//    public static void main(String[] args) {
+//        try {
+//            connection();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            statement.executeUpdate("CREATE TABLE IF EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT, nick TEXT, post TEXT)");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
