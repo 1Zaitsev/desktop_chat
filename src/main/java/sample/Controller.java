@@ -86,6 +86,8 @@ public class Controller{
                         }
                     }
 
+                    out.writeUTF("/history");
+
                     while (true) {
                         String str = in.readUTF();
                         if (str.equals("/serverclose")) break;
@@ -131,7 +133,7 @@ public class Controller{
         if(socket == null || socket.isClosed()){
             connect();
         }
-        out.writeUTF("/auth " + loginField.getText() + " " + passwordField.getText());
+        out.writeUTF("/auth" + " " + loginField.getText() + " " + passwordField.getText());
 
         loginField.clear();
         passwordField.clear();

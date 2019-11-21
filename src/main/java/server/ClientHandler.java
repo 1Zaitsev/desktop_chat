@@ -78,8 +78,13 @@ public class ClientHandler {
                                 blackList.add(tokens[1]);
                                 sendMsg(tokens[1] + " added to black list.");
                             }
+                            if(str.startsWith("/history")){
+                                StringBuilder stringBuilder = AuthService.getChatHistory();
+                                out.writeUTF(stringBuilder.toString());
+                            }
                         }else {
                             server.broadCastMsg(ClientHandler.this,nick + ": " + str);
+                            AuthService.saveHistory(nick, str);
                         }
                     }
                 } catch (IOException | SQLException e) {
